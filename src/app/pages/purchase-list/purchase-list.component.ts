@@ -3,11 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../../environment';
 import { GET_ALL_PURCHASE, PURCHASE } from '../../paths/url';
 import { NgForOf } from '@angular/common';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-purchase-list',
   standalone: true,
-  imports: [NgForOf],
+  imports: [NgForOf, RouterLink],
   templateUrl: './purchase-list.component.html',
   styleUrl: './purchase-list.component.css',
 })
@@ -16,7 +17,6 @@ export class PurchaseListComponent implements OnInit {
   purchaseList: any[] = [{ list: 'l1' }, { list: 'l2' }];
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
     this.getPurchaseList();
   }
   getPurchaseList() {
