@@ -1,38 +1,49 @@
-<div class="row">
-  <div class="col-12 text-end">
-    <button class="btn btn-success " routerLink="/new-purchase" >Add new</button>
-  </div>
-</div>
+<section class="example-container mat-elevation-z8" tabindex="0">
+  <table mat-table [dataSource]="purchaseList">
+    <!-- Position Column -->
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef>Purchase Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+    </ng-container>
 
-<div class="row">
-<div class="col-3" *ngFor="let purchase of purchaseList">
-  <div class="profile-card-4 text-center">
-    <div class="profile-content">
-      <div class="profile-name">{{purchase.invoiceNumber}}
-        <p>dcd</p>
-      </div>
-      <div class="profile-description">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor.</div>
-      <div class="row">
-        <div class="col-sm-4">
-          <div class="profile-overview">
-            <p>TWEETS</p>
-            <h4>1300</h4></div>
-        </div>
-        <div class="col-sm-4">
-          <div class="profile-overview">
-            <p>FOLLOWERS</p>
-            <h4>250</h4></div>
-        </div>
-        <div class="col-sm-4">
-          <div class="profile-overview">
-            <p>FOLLOWING</p>
-            <h4>168</h4></div>
-        </div>
-      </div>
-    </div>
-  </div>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Product Id</th>
+      <td mat-cell *matCellDef="let element">{{ element.productId }}</td>
+    </ng-container>
 
-</div>
-</div>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="weight">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let element">{{ element.quantity }}</td>
+    </ng-container>
 
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <th mat-header-cell *matHeaderCellDef>Supplier Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.supplierName }}</td>
+    </ng-container>
 
+    <ng-container matColumnDef="invoiceAmount">
+      <th mat-header-cell *matHeaderCellDef>Invoice Amount</th>
+      <td mat-cell *matCellDef="let element">{{ element.invoiceAmount }}</td>
+    </ng-container>
+    <ng-container matColumnDef="invoiceNumber">
+      <th mat-header-cell *matHeaderCellDef>Invoice Number</th>
+      <td mat-cell *matCellDef="let element">{{ element.invoiceNumber }}</td>
+    </ng-container>
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef>Created At</th>
+      <td mat-cell *matCellDef="let element">{{ element.createdAt }}</td>
+    </ng-container>
+    <ng-container matColumnDef="createNew">
+      <th mat-header-cell *matHeaderCellDef>
+        <a mat-raised-button routerLink="/new-purchase" color="primary">New Purchase</a>
+      </th>
+      <td mat-cell *matCellDef="let element"></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</section>
