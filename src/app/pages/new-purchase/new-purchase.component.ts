@@ -22,6 +22,7 @@ import { MatButton } from '@angular/material/button';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { environment } from '../../../../environment';
 import { HttpClient } from '@angular/common/http';
+import { PURCHASE } from '../../paths/url';
 
 @Component({
   selector: 'app-new-purchase',
@@ -42,6 +43,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class NewPurchaseComponent implements OnInit {
   private url = `${environment.BASE_URL}/products`;
+  private createProductUrl = `${environment.BASE_URL}/${PURCHASE}/create`;
   products: any[] = [];
   constructor(private http: HttpClient) {}
 
@@ -70,34 +72,27 @@ export class NewPurchaseComponent implements OnInit {
     invoiceAmount: new FormControl('', Validators.required),
     invoiceNumber: new FormControl('', Validators.required),
   });
+  selectedProduct: number = 1;
 
-  purchaseBody: any = {
-    purchaseDate: '2024-02-12',
-    productId: 2,
-    quantity: 12,
-    supplierName: 'Kasun',
-    invoiceAmount: 23,
-    invoiceNo: 1,
-  };
-  dummyProducts: any = [
-    {
-      productId: 0,
-      productName: 'MSI gf63',
-    },
-    {
-      productId: 1,
-      productName: 'Apple macbook pro',
-    },
-    {
-      productId: 2,
-      productName: 'samsung galaxy',
-    },
-  ];
-  productList: any = ([] = this.dummyProducts);
-  protected readonly onsubmit = onsubmit;
-  selectedProduct: number = 0;
+  purchaseBody: any;
 
   onSubmit() {
+    this.purchaseBody = {
+      purchase: {
+        productId: this.selectedProduct,
+        quantity: this.purchaseForm.value.quantity,
+        supplierName: `${this.purchaseForm.value.supplierName}`,
+        invoiceAmount: this.purchaseForm.value.invoiceAmount,
+        invoiceNumber: this.purchaseForm.value.invoiceNumber,
+      },
+    };
     console.log('submitted', this.selectedProduct);
+    console.log('suplier', this.purchaseForm.value.supplierName);
+
+    this.http
+      .post(this.createProductUrl, this.purchaseBody)
+      .subscribe((res) => {
+        console.log('success', res);
+      });
   }
 }
