@@ -72,3 +72,12 @@
   transform: rotate(5deg) scale(1.1, 1.1);
   filter: brightness(110%);
 }
+/*mui*/
+.example-container {
+  height: 400px;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
