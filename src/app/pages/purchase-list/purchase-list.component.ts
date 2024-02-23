@@ -13,8 +13,8 @@ import { RouterLink } from '@angular/router';
   styleUrl: './purchase-list.component.css',
 })
 export class PurchaseListComponent implements OnInit {
-  private url = `${environment.BASE_URL}/${PURCHASE}/${GET_ALL_PURCHASE}`;
-  purchaseList: any[] = [{ list: 'l1' }, { list: 'l2' }];
+  private url = `${environment.BASE_URL}/${PURCHASE}`;
+  purchaseList: any[] = [];
   constructor(private http: HttpClient) {}
   ngOnInit(): void {
     this.getPurchaseList();
@@ -23,6 +23,7 @@ export class PurchaseListComponent implements OnInit {
     this.http.get(this.url).subscribe({
       next: (purchaseList: any) => {
         this.purchaseList = purchaseList;
+        console.log(purchaseList);
       },
       error: (error) => {
         console.log(error);
