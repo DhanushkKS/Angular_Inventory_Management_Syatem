@@ -1,88 +1,16 @@
-<!--<div class="row">-->
-<!--  <form>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="invoiceNo" class="form-label">Invoice No</label>-->
-<!--      <input-->
-<!--        type="text"-->
-<!--        class="form-control"-->
-<!--        id="invoiceNo"-->
-<!--        name="invoiceNo"-->
-<!--        placeholder="Enter Invoice No"-->
-<!--        [(ngModel)]="purchaseBody.invoiceNo"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="supplierName" class="form-label">Supplier Name</label>-->
-<!--      <input-->
-<!--        type="text"-->
-<!--        class="form-control"-->
-<!--        id="supplierName"-->
-<!--        name="supplierName"-->
-<!--        placeholder="Enter Supplier Name"-->
-<!--        [(ngModel)]="purchaseBody.supplierName"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="purchaseDate" class="form-label">Purchase Date</label>-->
-<!--      <input-->
-<!--        type="date"-->
-<!--        class="form-control"-->
-<!--        id="purchaseDate"-->
-<!--        name="purchaseDate"-->
-<!--        [(ngModel)]="purchaseBody.purchaseDate"-->
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="productId" class="form-label">Product </label>-->
-<!--      <select class="form-select" id="productId" [(ngModel)]="purchaseBody.productId">-->
-<!--        <option selected>Select Product</option>-->
-<!--        <option *ngFor="let item of dummyProducts" [value]="item.productId">-->
-<!--          {{ item.productName }}-->
-<!--        </option>-->
-
-<!--        &lt;!&ndash; Add more options as needed &ndash;&gt;-->
-<!--      </select>-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="quantity" class="form-label">Quantity</label>-->
-<!--      <input-->
-<!--        type="number"-->
-<!--        class="form-control"-->
-<!--        id="quantity"-->
-<!--        name="quantity"-->
-<!--        placeholder="Enter Quantity"-->
-<!--        [(ngModel)]="purchaseBody.quantity"-->
-
-<!--      />-->
-<!--    </div>-->
-<!--    <div class="mb-3">-->
-<!--      <label for="invoiceAmount" class="form-label">Invoice Amount</label>-->
-<!--      <input-->
-<!--        type="number"-->
-<!--        class="form-control"-->
-<!--        id="invoiceAmount"-->
-<!--        name="invoiceAmount"-->
-<!--        placeholder="Enter Invoice Amount"-->
-<!--        [(ngModel)]="purchaseBody.invoiceAmount"-->
-
-<!--      />-->
-<!--    </div>-->
-<!--    <button type="submit" class="btn btn-primary">Submit</button>-->
-<!--  </form>-->
-<!--</div>-->
 <form [formGroup]="purchaseForm" (ngSubmit)="onSubmit()">
   <div>
     <mat-form-field>
       <mat-label>Product</mat-label>
       <mat-select [(value)]="selectedProduct">
-        <mat-option *ngFor="let product of products" [value]="product.id">{{product.name}}</mat-option>
-
-<!--        ngFor -->
+        <mat-option *ngFor="let product of products" [value]="product.id"
+          >{{ product.name }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
       <mat-label>Quantity</mat-label>
-      <input matInput formControlName="quantity"/>
+      <input matInput formControlName="quantity" />
     </mat-form-field>
   </div>
   <div>
@@ -104,7 +32,7 @@
     </mat-form-field>
   </div>
 
-
-
-    <button mat-raised-button color="primary" type="submit">Add new Purchase</button>
+  <button mat-raised-button color="primary" type="submit">
+    Add new Purchase
+  </button>
 </form>

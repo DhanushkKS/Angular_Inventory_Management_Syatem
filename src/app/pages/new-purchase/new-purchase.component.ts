@@ -7,17 +7,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import {
-  MatFormField,
-  MatFormFieldModule,
-  MatLabel,
-} from '@angular/material/form-field';
-import {
-  MatOption,
-  MatSelect,
-  MatSelectModule,
-} from '@angular/material/select';
-import { MatInput, MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { environment } from '../../../../environment';
