@@ -12,9 +12,10 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
-import { environment } from '../../../../environment';
-import { HttpClient } from '@angular/common/http';
-import { PURCHASE } from '../../paths/url';
+
+import { PurchaseService } from '../../../../services/purchase.service';
+import { ProductService } from '../../../../services/product.service';
+import PurchaseDto from '../../../../dtos/PurchaseDto';
 
 @Component({
   selector: 'app-new-purchase',
@@ -34,19 +35,17 @@ import { PURCHASE } from '../../paths/url';
   styleUrl: './new-purchase.component.css',
 })
 export class NewPurchaseComponent implements OnInit {
-  private url = `${environment.BASE_URL}/products`;
-  private createProductUrl = `${environment.BASE_URL}/${PURCHASE}/create`;
+  constructor(
+    private purchaseService: PurchaseService,
+    private productService: ProductService,
+  ) {}
+
   products: any[] = [];
-  constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.getProductsList();
-  }
-  getProductsList() {
-    this.http.get(this.url).subscribe({
+    this.productService.getProducts().subscribe({
       next: (products: any) => {
         this.products = products;
-        console.log(this.products);
       },
       error: (e) => {
         console.log(e);
@@ -66,25 +65,21 @@ export class NewPurchaseComponent implements OnInit {
   });
   selectedProduct: number = 1;
 
-  purchaseBody: any;
-
   onSubmit() {
-    this.purchaseBody = {
-      purchase: {
-        productId: this.selectedProduct,
-        quantity: this.purchaseForm.value.quantity,
-        supplierName: `${this.purchaseForm.value.supplierName}`,
-        invoiceAmount: this.purchaseForm.value.invoiceAmount,
-        invoiceNumber: this.purchaseForm.value.invoiceNumber,
+    const dto = new PurchaseDto(
+      <number>this.selectedProduct,
+      Number.parseInt(<string>this.purchaseForm.value.quantity),
+      <string>this.purchaseForm.value.supplierName,
+      Number.parseInt(<string>this.purchaseForm.value.invoiceAmount),
+      <string>this.purchaseForm.value.invoiceNumber,
+    );
+    this.purchaseService.createPurchase(dto).subscribe({
+      next: () => {
+        console.log('Created success');
       },
-    };
-    console.log('submitted', this.selectedProduct);
-    console.log('suplier', this.purchaseForm.value.supplierName);
-
-    this.http
-      .post(this.createProductUrl, this.purchaseBody)
-      .subscribe((res) => {
-        console.log('success', res);
-      });
+      error: (e) => {
+        console.log('Error Happened,', e);
+      },
+    });
   }
 }

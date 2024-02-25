@@ -1,12 +1,4 @@
 export default class PurchaseDto {
-  get purchaseDate(): string {
-    return this._purchaseDate;
-  }
-
-  set purchaseDate(value: string) {
-    this._purchaseDate = value;
-  }
-
   get productId(): number {
     return this._productId;
   }
@@ -39,33 +31,29 @@ export default class PurchaseDto {
     this._invoiceAmount = value;
   }
 
-  get invoiceNo(): string {
-    return this._invoiceNo;
+  get invoiceNumber(): string {
+    return this._invoiceNumber;
   }
 
-  set invoiceNo(value: string) {
-    this._invoiceNo = value;
+  set invoiceNumber(value: string) {
+    this._invoiceNumber = value;
   }
   constructor(
-    purchaseDate: string,
     productId: number,
     quantity: number,
     supplierName: string,
     invoiceAmount: number,
-    invoiceNo: string,
+    invoiceNumber: string,
   ) {
-    this._purchaseDate = purchaseDate;
     this._productId = productId;
     this._quantity = quantity;
     this._supplierName = supplierName;
     this._invoiceAmount = invoiceAmount;
-    this._invoiceNo = invoiceNo;
+    this._invoiceNumber = invoiceNumber;
   }
-
-  private _purchaseDate: string;
   private _productId: number;
   private _quantity: number;
   private _supplierName: string;
   private _invoiceAmount: number;
-  private _invoiceNo: string;
+  private _invoiceNumber: string;
 }
