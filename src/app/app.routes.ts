@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { NewPurchaseComponent } from './pages/new-purchase/new-purchase.component';
-import { NewSaleComponent } from './pages/new-sale/new-sale.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
-import { PurchaseListComponent } from './pages/purchase-list/purchase-list.component';
-import { SaleListComponent } from './pages/sale-list/sale-list.component';
-import { StockComponent } from './pages/stock/stock.component';
+import { DashboardComponent } from './pages/components/dashboard/dashboard.component';
+import { NewPurchaseComponent } from './pages/components/new-purchase/new-purchase.component';
+import { NewSaleComponent } from './pages/components/new-sale/new-sale.component';
+import { PurchaseListComponent } from './pages/components/purchase-list/purchase-list.component';
+import { SaleListComponent } from './pages/components/sale-list/sale-list.component';
+import { StockComponent } from './pages/components/stock/stock.component';
 
 export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, title: 'Dashboard' },
